@@ -6,8 +6,19 @@ const GlobalStyle = createGlobalStyle`
         padding:0;
         margin:0;
     }
+    html{
+        &::-webkit-scrollbar{
+            width:0.5rem;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color:darkgray;
+        }
+    }
     body{
         font-family:'Poppins',sans-serif;
+    }
+    .container{
+        padding: 0 2.5em;
     }
 `;
 
