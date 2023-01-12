@@ -2,6 +2,21 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import GlobalStyle from "./GlobalStyle";
 import { NewNote } from "./NewNote";
 
+export type Note = {
+  id: string
+} & NoteData
+
+export type NoteData = {
+  title: string
+  markdown: string
+  tags: Tag[]
+}
+
+export type Tag = {
+  id: string
+  label: string
+}
+
 const App = () => {
   return (
     <>

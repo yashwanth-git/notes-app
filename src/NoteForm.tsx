@@ -1,8 +1,27 @@
+import { FormEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-export const NoteForm = () => {
+import { NoteData, Tag } from "./App";
+
+type NoteFormProps = {
+  onSubmit: (data: NoteData) => void;
+};
+
+export const NoteForm = ({ onSubmit }: NoteFormProps) => {
+  const titleRef = useRef<HTMLInputElement>(null);
+  const markdownRef = useRef<HTMLTextAreaElement>(null);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    onSubmit({
+      title: titleRef.current!.value,
+      markdown: markdownRef.current!.value,
+      tags: [],
+    });
+  };
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <Group>
         <Input>
           <label htmlFor="title">Title </label>
@@ -20,7 +39,7 @@ export const NoteForm = () => {
       <Group className="mt-1 pull-right">
         <PButton>Save</PButton>
         <Link to="..">
-        <SButton>Cancel</SButton>
+          <SButton>Cancel</SButton>
         </Link>
       </Group>
     </StyledForm>
@@ -32,8 +51,8 @@ const Group = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  &.pull-right{
-      justify-content:flex-end;
+  &.pull-right {
+    justify-content: flex-end;
   }
   &.mt-1 {
     margin-top: 1em;
