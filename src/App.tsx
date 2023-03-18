@@ -18,7 +18,7 @@ export type RawNote = {
 export type RawNoteData = {
   title: string;
   markdown: string;
-  tagsIds: string[];
+  tagIds: string[];
 };
 
 export type NoteData = {
@@ -40,7 +40,7 @@ const App = () => {
     return notes.map((note) => {
       return {
         ...note,
-        tags: tags.filter((tag) => note.tagsIds.includes(note.id)),
+        tags: tags.filter(tag => note.tagIds.includes(tag.id)),
       };
     });
   }, [notes, tags]);
@@ -49,7 +49,7 @@ const App = () => {
     setNotes((prevNotes) => {
       return [
         ...prevNotes,
-        { ...data, id: uuidV4(), tagsIds: tags.map((tag) => tag.id) },
+        { ...data, id: uuidV4(), tagIds: tags.map((tag) => tag.id) },
       ];
     });
   }
@@ -62,7 +62,7 @@ const App = () => {
     <>
       <Container className="my-4">
         <Routes>
-          <Route path="/" element={<NoteList availableTags={tags}/>} />
+          <Route path="/" element={<NoteList notes={noteWithTags} availableTags={tags}/>} />
           <Route
             path="/new"
             element={
