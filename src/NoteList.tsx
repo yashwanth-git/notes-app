@@ -83,7 +83,10 @@ const NoteList = ({
           <Col>
             <Form.Group controlId="title">
               <Form.Label>Title</Form.Label>
-              <Form.Control type="text" />
+              <Form.Control
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </Form.Group>
           </Col>
           <Col>
