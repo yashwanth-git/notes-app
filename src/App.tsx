@@ -60,7 +60,7 @@ const App = () => {
   function onUpdateNote(id: string, { tags, ...data }: NoteData) {
     setNotes((prevNotes) => {
       return prevNotes.map((note) => {
-        if (note.id == id) {
+        if (note.id === id) {
           return {
             ...note,
             ...data,

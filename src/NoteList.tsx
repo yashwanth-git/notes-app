@@ -131,7 +131,6 @@ const NoteList = ({
 };
 
 const NoteCard = ({ id, title, tags }: SimplifiedNote) => {
-  console.log(tags);
   return (
     <Card
       as={Link}
